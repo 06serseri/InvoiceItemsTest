@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initViews();
-        fillItemList();
+
         Toast.makeText(this, "Count: " + itemList.toString(), Toast.LENGTH_SHORT).show();
 
         recyclerViewItemList.setHasFixedSize(true);
@@ -48,16 +48,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void fillItemList() {
-        Item item1 = new Item(0, "Banana", 1, .50, false);
-        Item item2 = new Item(1, "Coke", 2, 1, true);
-        Item item3 = new Item(2, "Wings", 10, 1.25, true);
-        Item item4 = new Item(3, "Apple", 3, .50, false);
-        Item item5 = new Item(4, "Bread", 1, .88, false);
-
-        itemList.addAll(Arrays.asList(new Item[]{item1, item2, item3, item4, item5}));
-
-    }
 
     private void initViews() {
         buttonAddEditItem = findViewById(R.id.buttonAddEditItem);

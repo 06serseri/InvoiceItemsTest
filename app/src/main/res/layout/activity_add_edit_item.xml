@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".AddEditItemActivity">
+
+
+    <EditText
+        android:id="@+id/editTextItemName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/buttonIncrease"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextItemName"
+        android:layout_marginTop="8dp"
+        android:text="+"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/textViewItemQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextItemName"
+        android:layout_alignBaseline="@+id/buttonIncrease"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="10dp"
+        android:layout_toEndOf="@+id/buttonIncrease"
+        android:text="1"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/buttonDecrease"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextItemName"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/textViewItemQuantity"
+        android:text="-"
+        android:textSize="30dp" />
+
+    <EditText
+        android:id="@+id/editTextItemRate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextItemName"
+        android:layout_alignBaseline="@+id/buttonDecrease"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/buttonDecrease"
+        android:hint="$0.00"
+        android:inputType="numberDecimal"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textViewHasTax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonIncrease"
+        android:layout_marginTop="8dp"
+        android:text="Taxable"
+        android:textSize="30sp" />
+
+    <CheckBox
+        android:id="@+id/checkBoxHasTax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonIncrease"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/textViewHasTax" />
+
+    <Button
+        android:id="@+id/buttonAddItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewHasTax"
+        android:layout_marginTop="8dp"
+        android:text="Add Item"
+        android:textAllCaps="false"
+        android:textSize="20sp"/>
+
+</RelativeLayout>

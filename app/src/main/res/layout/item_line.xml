@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativeLayoutItemLine"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textViewItemId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:hint="Item Id"
+        android:textSize="16dp" />
+
+    <TextView
+        android:id="@+id/textViewItemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/textViewItemId"
+        android:hint="Name"
+        android:textSize="16dp" />
+
+    <TextView
+        android:id="@+id/textViewItemRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/textViewItemName"
+        android:hint="Rate"
+        android:textSize="16dp" />
+
+    <TextView
+        android:id="@+id/textViewItemQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/textViewItemRate"
+        android:hint="Quantity"
+        android:textSize="16dp" />
+
+    <TextView
+        android:id="@+id/textViewItemTax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewItemRate"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:hint="Tax"
+        android:textSize="16dp" />
+
+    <TextView
+        android:id="@+id/textViewItemDollarAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewItemQuantity"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/textViewItemTax"
+        android:hint="$0.00"
+        android:textSize="16dp" />
+
+</RelativeLayout>

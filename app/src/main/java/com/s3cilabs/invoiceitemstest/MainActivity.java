@@ -20,7 +20,9 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerViewItemList;
     RecyclerView.Adapter mAdapter;
     RecyclerView.LayoutManager mLayoutManager;
-    List<Item> itemList = new ArrayList<Item>();
+
+    MyApplication myApplication = (MyApplication) this.getApplication();
+    List<Item> itemList;
 
 
     @Override
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initViews();
+
+        itemList = myApplication.getItemList();
 
         Toast.makeText(this, "Count: " + itemList.toString(), Toast.LENGTH_SHORT).show();
 
@@ -47,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void initViews() {
         buttonAddEditItem = findViewById(R.id.buttonAddEditItem);

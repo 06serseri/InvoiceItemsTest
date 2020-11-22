@@ -17,7 +17,7 @@ public class AddEditItemActivity extends AppCompatActivity {
     private static final String TAG = "AddEditItemActivity";
     EditText editTextItemName, editTextItemRate;
     TextView textViewItemQuantity, textViewHasTax;
-    Button buttonIncrease, buttonDecrease, buttonAddItem;
+    Button buttonIncrease, buttonDecrease, buttonAddItem, buttonDeleteItem;
     CheckBox checkBoxHasTax;
     List<Item> itemList;
     MyApplication myApplication = (MyApplication) this.getApplication();
@@ -56,10 +56,10 @@ public class AddEditItemActivity extends AppCompatActivity {
         itemId = intent.getIntExtra("itemId", -1);
         Item item = null;
 
-       if (itemId >= 0){
-           //Edit the item
-            for(Item i: itemList){
-                if (i.getItemId() == itemId){
+        if (itemId >= 0) {
+            //Edit the item
+            for (Item i : itemList) {
+                if (i.getItemId() == itemId) {
                     item = i;
                 }
             }
@@ -69,15 +69,15 @@ public class AddEditItemActivity extends AppCompatActivity {
             checkBoxHasTax.setChecked(Boolean.valueOf(item.itemHasTax));
             itemQuantity = (int) item.getItemQuantity();
 
-       } else {
-           //Add new item
-       }
+        } else {
+            //Add new item
+        }
 
         buttonAddItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (itemId >= 0){
+                if (itemId >= 0) {
                     //Update item
                     Item updatedItem = new Item(itemId, editTextItemName.getText().toString(),
                             itemQuantity,
@@ -111,6 +111,20 @@ public class AddEditItemActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        buttonDeleteItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Delete item
+                if (!itemList.isEmpty()){
+                    itemList.remove(itemId);
+                    myApplication.setNextItemId(nextItemId--);
+                }
+
+                //Return to the main activity
+                Intent intent = new Intent(AddEditItemActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -135,6 +149,7 @@ public class AddEditItemActivity extends AppCompatActivity {
         buttonIncrease = findViewById(R.id.buttonIncrease);
         buttonDecrease = findViewById(R.id.buttonDecrease);
         buttonAddItem = findViewById(R.id.buttonAddItem);
+        buttonDeleteItem = findViewById(R.id.buttonDeleteItem);
         checkBoxHasTax = findViewById(R.id.checkBoxHasTax);
     }
 }

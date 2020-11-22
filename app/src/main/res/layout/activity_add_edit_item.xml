@@ -86,5 +86,14 @@
         android:text="Add Item"
         android:textAllCaps="false"
         android:textSize="20sp"/>
+    <Button
+        android:id="@+id/buttonDeleteItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonAddItem"
+        android:layout_marginTop="8dp"
+        android:text="Delete Item"
+        android:textAllCaps="false"
+        android:textSize="20sp"/>
 
 </RelativeLayout>

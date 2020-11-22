@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         itemList = myApplication.getItemList();
 
-        Toast.makeText(this, "Count: " + itemList.toString(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Count: " + itemList.toString(), Toast.LENGTH_SHORT).show();
 
         recyclerViewItemList.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);

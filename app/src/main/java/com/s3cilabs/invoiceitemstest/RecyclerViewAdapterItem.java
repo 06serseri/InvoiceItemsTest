@@ -1,9 +1,11 @@
 package com.s3cilabs.invoiceitemstest;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -46,6 +48,17 @@ public class RecyclerViewAdapterItem extends RecyclerView.Adapter<RecyclerViewAd
         //Calculate the total item amount factoring rate, quantity and tax
         holder.textViewItemDollarAmount.setText("$" + String.valueOf(itemList.get(position).getItemRate()*
                 itemList.get(position).getItemQuantity()*taxRate));
+
+        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Send the control to the AddEditItemActivity
+                Intent intent = new Intent(context, AddEditItemActivity.class);
+                intent.putExtra("itemId", itemList.get(position).getItemId());
+                context.startActivity(intent);
+
+            }
+        });
     }
 
     @Override
@@ -56,6 +69,7 @@ public class RecyclerViewAdapterItem extends RecyclerView.Adapter<RecyclerViewAd
     public class ItemViewHolder extends RecyclerView.ViewHolder {
         TextView textViewItemId, textViewItemName, textViewItemRate, textViewItemQuantity,
                 textViewItemTax, textViewItemDollarAmount;
+        RelativeLayout relativeLayout;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,6 +80,7 @@ public class RecyclerViewAdapterItem extends RecyclerView.Adapter<RecyclerViewAd
             textViewItemQuantity = itemView.findViewById(R.id.textViewItemQuantity);
             textViewItemTax = itemView.findViewById(R.id.textViewItemTax);
             textViewItemDollarAmount = itemView.findViewById(R.id.textViewItemDollarAmount);
+            relativeLayout = itemView.findViewById(R.id.relativeLayoutItemLine);
         }
     }
 }

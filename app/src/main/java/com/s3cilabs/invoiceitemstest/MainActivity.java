@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     MyApplication myApplication = (MyApplication) this.getApplication();
     List<Item> itemList;
 
+    //TODO EditItem https://www.youtube.com/watch?v=ASLLh-6MGVA&list=PLhPyEFL5u-i1jAc79cJ2j8pDZFEyvpoH_&index=6
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -21,6 +21,7 @@ public class AddEditItemActivity extends AppCompatActivity {
     CheckBox checkBoxHasTax;
     List<Item> itemList;
     MyApplication myApplication = (MyApplication) this.getApplication();
+    int itemId;
 
     int nextItemId = myApplication.getNextItemId();
     int itemQuantity = 1;
@@ -51,27 +52,59 @@ public class AddEditItemActivity extends AppCompatActivity {
             }
         });
 
+        Intent intent = getIntent();
+        itemId = intent.getIntExtra("itemId", -1);
+        Item item = null;
+
+       if (itemId >= 0){
+           //Edit the item
+            for(Item i: itemList){
+                if (i.getItemId() == itemId){
+                    item = i;
+                }
+            }
+            editTextItemName.setText(item.getItemName());
+            textViewItemQuantity.setText(String.valueOf(item.getItemQuantity()));
+            editTextItemRate.setText(String.valueOf(item.getItemRate()));
+            checkBoxHasTax.setChecked(Boolean.valueOf(item.itemHasTax));
+            itemQuantity = (int) item.getItemQuantity();
+
+       } else {
+           //Add new item
+       }
+
         buttonAddItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                //Check if the tax checkbox is checked
-                if (checkBoxHasTax.isChecked()){
-                    hasTax = true;
+                if (itemId >= 0){
+                    //Update item
+                    Item updatedItem = new Item(itemId, editTextItemName.getText().toString(),
+                            itemQuantity,
+                            Double.parseDouble(editTextItemRate.getText().toString()),
+                            hasTax);
+                    itemList.set(itemId, updatedItem);
+//                    itemList.remove(1);
+
                 } else {
-                    hasTax = false;
+                    //Add new item
+                    //Check if the tax checkbox is checked
+                    if (checkBoxHasTax.isChecked()) {
+                        hasTax = true;
+                    } else {
+                        hasTax = false;
+                    }
+
+                    //Create item object
+                    Item newItem = new Item(nextItemId, editTextItemName.getText().toString(),
+                            itemQuantity,
+                            Double.parseDouble(editTextItemRate.getText().toString()),
+                            hasTax);
+
+                    //Add the object to the global list of items
+                    itemList.add(newItem);
+                    myApplication.setNextItemId(nextItemId++);
                 }
-
-                //Create item object
-                //TODO look into quantity and tax
-                Item newItem = new Item(nextItemId, editTextItemName.getText().toString(),
-                        itemQuantity,
-                        Double.parseDouble(editTextItemRate.getText().toString()),
-                        hasTax);
-
-                //Add the object to the global list of items
-                itemList.add(newItem);
-                myApplication.setNextItemId(nextItemId++);
 
                 //Return to the main activity
                 Intent intent = new Intent(AddEditItemActivity.this, MainActivity.class);
@@ -87,7 +120,7 @@ public class AddEditItemActivity extends AppCompatActivity {
     }
 
     private void decrease() {
-        if(itemQuantity > 0){
+        if (itemQuantity > 0) {
             itemQuantity--;
             textViewItemQuantity.setText(String.valueOf(itemQuantity));
         }

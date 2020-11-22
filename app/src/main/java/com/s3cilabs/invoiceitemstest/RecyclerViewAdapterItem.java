@@ -39,15 +39,15 @@ public class RecyclerViewAdapterItem extends RecyclerView.Adapter<RecyclerViewAd
         holder.textViewItemRate.setText(String.valueOf(itemList.get(position).getItemRate()));
         holder.textViewItemQuantity.setText(String.valueOf(itemList.get(position).getItemQuantity()));
         //Convert isHasTax() to taxRate
-        if (itemList.get(position).isItemHasTax()){
+        if (itemList.get(position).isItemHasTax()) {
             taxRate = 1.13;
         } else {
             taxRate = 1.00;
         }
         holder.textViewItemTax.setText(String.valueOf(taxRate));
         //Calculate the total item amount factoring rate, quantity and tax
-        holder.textViewItemDollarAmount.setText("$" + String.valueOf(itemList.get(position).getItemRate()*
-                itemList.get(position).getItemQuantity()*taxRate));
+        holder.textViewItemDollarAmount.setText("$" + itemList.get(position).getItemRate() *
+                itemList.get(position).getItemQuantity() * taxRate);
 
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override

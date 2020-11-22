@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -43,7 +44,6 @@ public class AddEditItemActivity extends AppCompatActivity {
                 increase();
             }
         });
-
         //Decrease item quantity
         buttonDecrease.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +63,7 @@ public class AddEditItemActivity extends AppCompatActivity {
                     item = i;
                 }
             }
+            buttonAddItem.setText("Update Item");
             editTextItemName.setText(item.getItemName());
             textViewItemQuantity.setText(String.valueOf(item.getItemQuantity()));
             editTextItemRate.setText(String.valueOf(item.getItemRate()));
@@ -96,15 +97,26 @@ public class AddEditItemActivity extends AppCompatActivity {
                     }
 
                     //Create item object
-                    Item newItem = new Item(nextItemId, editTextItemName.getText().toString(),
-                            itemQuantity,
-                            Double.parseDouble(editTextItemRate.getText().toString()),
-                            hasTax);
+                    try {
+                        Item newItem = new Item(nextItemId, editTextItemName.getText().toString(),
+                                itemQuantity,
+                                Double.parseDouble(editTextItemRate.getText().toString()),
+                                hasTax);
 
-                    //Add the object to the global list of items
-                    itemList.add(newItem);
-                    myApplication.setNextItemId(nextItemId++);
+                        //Add the object to the global list of items
+                        itemList.add(newItem);
+                        myApplication.setNextItemId(nextItemId++);
+                        Toast.makeText(AddEditItemActivity.this, "Added successfully", Toast.LENGTH_SHORT).show();
+                    } catch (Exception e){
+                        Toast.makeText(AddEditItemActivity.this, "ERROR adding item", Toast.LENGTH_SHORT).show();
+                        Item failedItem = new Item(-1, "Error", -1, -1, false);
+                    }
+
+
                 }
+                System.out.println("MyApplication nextItemID: " + myApplication.getNextItemId());
+                System.out.println("AddEditActivity nextItemID: " + nextItemId);
+                System.out.println("ItemID: " + itemId);
 
                 //Return to the main activity
                 Intent intent = new Intent(AddEditItemActivity.this, MainActivity.class);
@@ -117,8 +129,11 @@ public class AddEditItemActivity extends AppCompatActivity {
                 //Delete item
                 if (!itemList.isEmpty()){
                     itemList.remove(itemId);
-                    myApplication.setNextItemId(nextItemId--);
+//                    myApplication.setNextItemId(nextItemId--);
                 }
+                System.out.println("MyApplication nextItemID: " + myApplication.getNextItemId());
+                System.out.println("AddEditActivity nextItemID: " + nextItemId);
+                System.out.println("ItemID: " + itemId);
 
                 //Return to the main activity
                 Intent intent = new Intent(AddEditItemActivity.this, MainActivity.class);
@@ -127,6 +142,11 @@ public class AddEditItemActivity extends AppCompatActivity {
         });
     }
 
+    private void checkNullException() {
+        if (editTextItemName.getText().toString().isEmpty()){
+            System.out.println("Na");
+        }
+    }
 
     private void increase() {
         itemQuantity++;
